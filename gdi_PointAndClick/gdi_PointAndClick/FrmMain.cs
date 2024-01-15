@@ -20,7 +20,7 @@ namespace gdi_PointAndClick
             int h = this.ClientSize.Height;
 
             // Zeichenmittel
-            Brush b = new SolidBrush(Color.Lavender);
+            Brush b = new SolidBrush(Color.Black);
 
 
             for (int i = 0; i < rectangles.Count; i++)
@@ -34,11 +34,18 @@ namespace gdi_PointAndClick
         {
             Point mausposition = e.Location;
 
-            Rectangle r = new Rectangle(mausposition.X, mausposition.Y, 40, 40);
+            bool viereckTreffer = rectangles.Any(rect => rect.Contains(mausposition));
 
-            rectangles.Add(r);  // Kurze Variante: rectangles.Add( new Rectangle(...)  );
+            if (!viereckTreffer)
+            {
+                Rectangle r = new Rectangle(mausposition.X, mausposition.Y, 40, 40);
 
-            Refresh();
+                rectangles.Add(r);  // Kurze Variante: rectangles.Add( new Rectangle(...)  );
+
+                Refresh();
+            }
+
+          
         }
 
         private void FrmMain_KeyDown(object sender, KeyEventArgs e)
