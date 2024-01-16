@@ -20,7 +20,15 @@ namespace gdi_PointAndClick
             int h = this.ClientSize.Height;
 
             // Zeichenmittel
-            Brush b = new SolidBrush(Color.Black);
+
+            Color newRandomColor = GetRandomColor();
+            Brush b = new SolidBrush(newRandomColor);
+
+            static Color GetRandomColor()
+            {
+                Random random = new Random();
+                return Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
+            }
 
 
             for (int i = 0; i < rectangles.Count; i++)
